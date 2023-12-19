@@ -1,3 +1,11 @@
+experiments/venv
+experiments/SWT-Transformer/SWT_env
+experiments/Datasets
+experiments/SWT-Transformer/ukdale
+experiments/SWT-Transformer/data household
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
