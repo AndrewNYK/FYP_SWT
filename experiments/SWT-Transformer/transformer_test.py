@@ -48,7 +48,7 @@ def save_result(y_test, predicted_values):
     np.savetxt('./T_SWT_house4_min5_predicted.csv', predicted_values)  # save path
 
 
-df = pd.read_csv('C:/Users/Andrew/Desktop/experiments/SWT-Transformer/data ukdale/house1_5mins.csv',
+df = pd.read_csv('./SWT-Transformer/data ukdale/house1_5mins.csv',
                  dtype=dtype)  # path to data
 
 
@@ -103,7 +103,6 @@ class Time2Vector(Layer):
         self.seq_len = seq_len
 
     def build(self, input_shape):
-        print("Time2Vector:", input_shape)
         self.weights_linear = self.add_weight(name='weight_linear',
                                               shape=(int(self.seq_len),),
                                               initializer='uniform',
@@ -146,7 +145,6 @@ class SingleAttention(Layer):
         self.d_v = d_v
 
     def build(self, input_shape):
-        print("SingleAttention:", input_shape)
         self.query = Dense(self.d_k,
                            input_shape=input_shape,
                            kernel_initializer='glorot_uniform',
@@ -183,7 +181,6 @@ class MultiAttention(Layer):
         self.attn_heads = list()
 
     def build(self, input_shape):
-        print("MultiAttention:", input_shape)
         for n in range(self.n_heads):
             self.attn_heads.append(SingleAttention(self.d_k, self.d_v))
         self.linear = Dense(input_shape[0][-1],
@@ -208,7 +205,6 @@ class TransformerEncoder(Layer):
         self.dropout_rate = dropout
 
     def build(self, input_shape):
-        print("TransformerEncoder:", input_shape)
         self.attn_multi = MultiAttention(self.d_k, self.d_v, self.n_heads)
         self.attn_dropout = Dropout(self.dropout_rate)
         self.attn_normalize = LayerNormalization(input_shape=input_shape, epsilon=1e-6)
@@ -250,7 +246,6 @@ class TransformerDecoder(Layer):
         self.dropout_rate = dropout
 
     def build(self, input_shape):
-        print("TransformerDecoder:", input_shape)
         self.attn_multi = MultiAttention(self.d_k, self.d_v, self.n_heads)
         self.attn_dropout = Dropout(self.dropout_rate)
         self.attn_normalize = LayerNormalization(input_shape=input_shape, epsilon=1e-6)
@@ -286,8 +281,12 @@ def create_model():
   layer4 = TransformerDecoder(d_k, d_v, n_heads, ff_dim)
   layer5 = TransformerDecoder(d_k, d_v, n_heads, ff_dim)
   in_seq = Input(shape=(seq_len, inp_len))
+  # print(in_seq)
+  # print(in_seq.shape)
   x = time_embedding(in_seq)
+  # print("time", x)
   x = Concatenate(axis=-1)([in_seq, x])
+  # print("concat", x)
   x = layer1((x, x, x))
   x = layer2((x, x, x))
   x = layer3((x, x, x))
@@ -323,8 +322,8 @@ dataset=dataset.astype('float32')
 # print("Dataset Shape:", dataset.shape)
 # print("Dataset Length:", len(dataset))
 
-# s = dataset[:12000*3]
 s = dataset[:12000*3]
+# s = dataset[:120000*3]
 # s = np.squeeze(dataset[:12000*3], axis=1)  #
 
 # Get the maximum decomposition level
@@ -389,7 +388,7 @@ with tf.device("/gpu:0"):
     history = model.fit(X_train, y_train,
                             batch_size=batch_size,
 #                             epochs=50,
-                            epochs=1,
+                            epochs=5,
                             validation_data=(X_val, y_val),
                             callbacks=[callback])
 

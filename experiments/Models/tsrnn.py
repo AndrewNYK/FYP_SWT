@@ -342,7 +342,7 @@ class DPTrainableTSRNN(Itrainable):
             for batch_idx, (src, tar) in enumerate(loader):
                 src_ = src.to(device)
                 tar_ = tar.to(device)
-                
+
                 src_ = src_.nan_to_num()
                 out,_ = self.dpmod(src_)
                 
