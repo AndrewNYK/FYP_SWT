@@ -200,7 +200,8 @@ class DPTrainable(Itrainable):
             
             src_ = src_.nan_to_num()
             #print(src_.shape)
-            with torch.cuda.amp.autocast(dtype = torch.bfloat16):
+            # with torch.cuda.amp.autocast(dtype = torch.bfloat16):
+            with torch.cuda.amp.autocast(dtype = torch.float16):
                 out = self.dpmod(src_)
 
                 loss = torch.nn.MSELoss(reduction='mean')(out[~tar_.isnan()],
