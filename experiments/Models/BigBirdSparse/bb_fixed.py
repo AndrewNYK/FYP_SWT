@@ -467,7 +467,7 @@ class BlockSparseFixedAttention(MultiheadAttention):
             xavier_normal_(self.bias_v)
         
     def forward(self, query: Tensor, key: Tensor, value: Tensor, key_padding_mask: Optional[Tensor] = None,
-                need_weights: bool = True, attn_mask: Optional[Tensor] = None) -> Tuple[Tensor, Optional[Tensor]]:
+                need_weights: bool = True, attn_mask: Optional[Tensor] = None, **kwargs) -> Tuple[Tensor, Optional[Tensor]]:
         if self.batch_first:
             query, key, value = [x.transpose(1, 0) for x in (query, key, value)]
 
