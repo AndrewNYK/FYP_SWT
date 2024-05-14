@@ -1,3 +1,4 @@
+# Reference Paper and Details
 Reference Github Repo for SWT Transformer implemenetation
 https://github.com/LyesSaadSaoud/House_transformer/blob/main/Transformers_Houses1to5_5min.py
 
@@ -24,10 +25,10 @@ https://ukerc.rl.ac.uk/DC/cgi-bin/edc_search.pl/?WantComp=138
 # Steps
 All python files and ipynb files use to test Github implementation
 
-## no -pytorch files
+**no "-pytorch" files**
 tensorflow implementation from original github code but modified due to many errors found
 
-## -pytorch files
+**"-pytorch" files**
 Pytorch implementation testing for equivalent conversion
 
 File that has correct conversion:
