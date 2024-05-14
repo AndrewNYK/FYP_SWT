@@ -26,10 +26,10 @@ https://ukerc.rl.ac.uk/DC/cgi-bin/edc_search.pl/?WantComp=138
 All python files and ipynb files use to test Github implementation
 
 **no "-pytorch" files**
-tensorflow implementation from original github code but modified due to many errors found
+- tensorflow implementation from original github code but modified due to many errors found
 
 **"-pytorch" files**
-Pytorch implementation testing for equivalent conversion
+- Pytorch implementation testing for equivalent conversion
 
-File that has correct conversion:
+File that has correct conversion to **pytorch**:
 Transformer_Houses1to5_5min-pytorch.ipynb
