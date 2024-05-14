@@ -1,5 +1,6 @@
 # Datasets
 Electrical datasets used for analyzing model performance
+**Missing** London dataset: https://www.kaggle.com/datasets/jeanmidev/smart-meters-in-london
 
 # Models
 Model implementation of baseTransformer, BBFixed, Sparse, tsrnn
@@ -15,6 +16,7 @@ All implementations of SWT-Transformers and its variants on Datasets - London, A
 
 # SWT-Transformer
 Pytorch implementation of SWT-Transformer and comparison to referenced paper
+**Missing** household consumption dataset and ukdale dataset, but url provided
 
 # tsrnn-ref
 tsrnn tools
